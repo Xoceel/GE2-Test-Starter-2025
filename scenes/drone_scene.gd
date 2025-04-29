@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		drone.global_position.y += lift_force * delta
 	if Input.is_action_pressed("forward"):
 		drone.global_rotation.x = deg_to_rad(-5)
-	if Input.is_action_pressed("forward"):
+	if Input.is_action_pressed("reverse"):
 		drone.global_rotation.x = deg_to_rad(5)
 	#if Input.is_action_pressed("up"):
 		#force += lift
