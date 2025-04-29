@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://csh1jyf2sabut"]
+
+[ext_resource type="PackedScene" uid="uid://kg25q27hvmig" path="res://drone_prop.tscn" id="1_dil0n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eqyx3"]
+size = Vector3(2, 1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dcahk"]
+size = Vector3(2, 0.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_muxj4"]
+size = Vector3(1.5, 0.5, 0.3)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c5ibb"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.3
+
+[node name="DroneBody" type="RigidBody3D"]
+mass = 50.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_eqyx3")
+
+[node name="CenterBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_dcahk")
+
+[node name="Arm1" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -1.2, 0, 1)
+mesh = SubResource("BoxMesh_muxj4")
+
+[node name="Arm2" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.2, 0, -1)
+mesh = SubResource("BoxMesh_muxj4")
+
+[node name="Arm3" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.2, 0, 1)
+mesh = SubResource("BoxMesh_muxj4")
+
+[node name="Arm4" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 1.2, 0, -1)
+mesh = SubResource("BoxMesh_muxj4")
+
+[node name="Conn1" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.3, 1.548)
+mesh = SubResource("CylinderMesh_c5ibb")
+
+[node name="Conn2" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3, 1.548)
+mesh = SubResource("CylinderMesh_c5ibb")
+
+[node name="Conn3" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.3, -1.548)
+mesh = SubResource("CylinderMesh_c5ibb")
+
+[node name="Conn4" type="MeshInstance3D" parent="CenterBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3, -1.548)
+mesh = SubResource("CylinderMesh_c5ibb")
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="DroneProp" parent="Props" instance=ExtResource("1_dil0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.583, 1.548)
+
+[node name="DroneProp2" parent="Props" instance=ExtResource("1_dil0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.583, 1.548)
+
+[node name="DroneProp3" parent="Props" instance=ExtResource("1_dil0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.583, -1.548)
+
+[node name="DroneProp4" parent="Props" instance=ExtResource("1_dil0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.583, -1.548)
