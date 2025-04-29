@@ -16,12 +16,18 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var follow_point = drone.global_position - Vector3(0, -5, 5)
-	
 	
 	camera.global_position = lerp(camera.position, follow_point, 1.0)
 	camera.look_at(drone.global_position)
+	
+	if Input.is_action_pressed("left"):
+		drone.rotate_y(deg_to_rad(1.2))
+	if Input.is_action_pressed("right"):
+		drone.rotate_y(deg_to_rad(-1.2))
+	if Input.is_action_pressed("up"):
+		drone.global_position.y += 50 * delta
 	#if Input.is_action_pressed("up"):
 		#force += lift
 	#
