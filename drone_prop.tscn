@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://kg25q27hvmig"]
+[gd_scene load_steps=3 format=3 uid="uid://kg25q27hvmig"]
+
+[ext_resource type="Script" uid="uid://df8c31catyih7" path="res://drone_prop.gd" id="1_vmjvo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fbbet"]
 size = Vector3(1, 0.1, 0.1)
 
 [node name="DroneProp" type="Node3D"]
+script = ExtResource("1_vmjvo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

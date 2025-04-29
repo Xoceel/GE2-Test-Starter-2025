@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://csh1jyf2sabut"]
+[gd_scene load_steps=8 format=3 uid="uid://csh1jyf2sabut"]
 
 [ext_resource type="PackedScene" uid="uid://kg25q27hvmig" path="res://drone_prop.tscn" id="1_dil0n"]
+[ext_resource type="Script" uid="uid://c1u38oxjgg71i" path="res://scenes/drone.gd" id="1_knnud"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqyx3"]
 size = Vector3(2, 1, 0.5)
@@ -16,8 +17,11 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knnud"]
+albedo_color = Color(0.992157, 0.564706, 0.960784, 0.25098)
+
 [node name="DroneBody" type="RigidBody3D"]
-mass = 50.0
+script = ExtResource("1_knnud")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.25, 0)
@@ -58,6 +62,24 @@ mesh = SubResource("CylinderMesh_c5ibb")
 [node name="Conn4" type="MeshInstance3D" parent="CenterBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3, -1.548)
 mesh = SubResource("CylinderMesh_c5ibb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CenterBody"]
+size = Vector3(0.8, 1, 0.9)
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="CenterBody/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364755, 0)
+operation = 2
+inner_radius = 0.2
+outer_radius = 0.7
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CenterBody/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+material = SubResource("StandardMaterial3D_knnud")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CenterBody/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+operation = 2
+radius = 0.3
 
 [node name="Props" type="Node3D" parent="."]
 
